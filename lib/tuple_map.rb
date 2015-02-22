@@ -1,7 +1,7 @@
 class TupleMap
 
   def initialize
-    self.data = []
+    @data = []
   end
 
   def []=(key, value)
@@ -9,7 +9,7 @@ class TupleMap
     if tuple
       tuple[1] = value
     else
-      self.data << [key, value]
+      @data << [key, value]
     end
   end
 
@@ -18,16 +18,16 @@ class TupleMap
   end
 
   def keys
-    data.map { |tuple| tuple[0] }
+    @data.map { |tuple| tuple[0] }
   end
 
   def values
-    data.map { |tuple| tuple[1] }
+    @data.map { |tuple| tuple[1] }
   end
 
   def delete(key)
-    index = data.index { |tuple| tuple[0].eql?(key) }
-    return data.delete_at(index)[1] if index
+    index = @data.index { |tuple| tuple[0].eql?(key) }
+    return @data.delete_at(index)[1] if index
   end
 
   def has_key?(key)
@@ -35,14 +35,14 @@ class TupleMap
   end
 
   def length
-    data.length
+    @data.length
   end
 
   protected
   attr_accessor :data
 
   def tuple_with_key(key)
-    data.detect { |tuple| tuple[0].eql?(key) }
+    @data.detect { |tuple| tuple[0].eql?(key) }
   end
 
 end
